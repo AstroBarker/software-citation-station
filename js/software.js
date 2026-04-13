@@ -293,7 +293,11 @@ Promise.all([
                         });
 
                         // update the version picker with available versions
-                        get_zenodo_version_info_cached(btn.getAttribute("data-key"), vp);
+                        get_zenodo_version_info_cached(
+                            btn.getAttribute("data-key"),
+                            citations[btn.getAttribute("data-key")]["zenodo_doi"],
+                            vp
+                        );
                         document.getElementById("version-list").appendChild(vp);
 
                         // make a note that the user needs to select a version
@@ -963,7 +967,7 @@ async function get_zenodo_version_info(concept_doi, vp) {
 }
 
 // Function to get Zenodo version info from cached files
-async function get_zenodo_version_info_cached(package_name, vp) {
+async function get_zenodo_version_info_cached(package_name, concept_doi, vp) {
     try {
         // Fetch the cached version data for this package
         const response = await fetch(`data/zenodo-versions/${package_name}.json`);
@@ -971,11 +975,7 @@ async function get_zenodo_version_info_cached(package_name, vp) {
         // If file doesn't exist, fall back to the API
         if (!response.ok) {
             console.warn(`No cached version data found for ${package_name}, falling back to API`);
-            if (!citations[package_name]) {
-                throw new Error(`Package ${package_name} not found in citations`);
-            }
-            const zenodo_doi = citations[package_name]["zenodo_doi"];
-            return get_zenodo_version_info(zenodo_doi, vp);
+            return get_zenodo_version_info(concept_doi, vp);
         }
         
         const version_and_doi = await response.json();

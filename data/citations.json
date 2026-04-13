@@ -2683,5 +2683,25 @@
         "zenodo_doi": "10.5281/zenodo.17635197",
         "custom_citation": "",
         "dependencies": []
+    },
+    "Parthenon": {
+        "tags": [
+            "parthenon"
+        ],
+        "logo": "",
+        "language": "C++",
+        "category": "Computing",
+        "keywords": [
+            "performance portability",
+            "adaptive mesh refinement"
+        ],
+        "description": "A performance portable block-structured adaptive mesh refinement framework for building physics applications.",
+        "link": "https://parthenon-hpc-lab.github.io/parthenon/develop/index.html",
+        "attribution_link": "https://github.com/parthenon-hpc-lab/parthenon/",
+        "zenodo_doi": "",
+        "custom_citation": "",
+        "dependencies": [
+            "Kokkos"
+        ]
     }
 }

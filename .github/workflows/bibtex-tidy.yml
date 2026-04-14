@@ -3,11 +3,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'data/bibtex.bib' # Only runs when this specific file changes
+      - 'data/bibtex.bib'
   pull_request:
     paths:
-      - 'data/bibtex.bib' # Only runs when this specific file changes
-  workflow_dispatch:     # Allows manual triggering
+      - 'data/bibtex.bib'
+  workflow_dispatch:
 
 jobs:
   tidy:
